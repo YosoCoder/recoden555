@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Show Class Code</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    #warning {
+      color: #FF0000;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Show Class Code</h1>
+
+  <button onclick="showClassCode()">Show Class Code</button>
+
+  <p id="classCode" style="display: none;">Class Code: HPV4FJB</p>
+  <p id="warning" style="display: none;">Warning: Please use the class code responsibly.</p>
+
+  <script>
+    function showClassCode() {
+      const classCodeElement = document.getElementById('classCode');
+      const warningElement = document.getElementById('warning');
+
+      classCodeElement.style.display = 'block';
+      warningElement.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

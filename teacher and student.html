@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher and Student Links</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    #disclaimer {
+      margin-top: 20px;
+      font-style: italic;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Teacher and Student Links</h1>
+  
+  <button onclick="openLink('https://www.google.com')">Google</button>
+  <button onclick="openLink('https://www.youtube.com')">YouTube</button>
+  <button onclick="openLink('https://www.tiktok.com')">TikTok</button>
+  <button onclick="openLink('https://discord.com')">Discord</button>
+  <button onclick="openLink('https://www.instagram.com')">Instagram</button>
+  <button onclick="openLink('https://twitter.com')">Twitter</button>
+  <button onclick="openLink('https://github.com')">GitHub</button>
+  <button onclick="openLink('https://classroom.google.com')">Google Classroom</button>
+  <button onclick="openLink('https://meet.google.com')">Google Meet</button>
+  <button onclick="openLink('https://music.youtube.com')">YouTube Music</button>
+
+  <p id="disclaimer">THIS IS FOR TEACHERS AND STUDENTS</p>
+
+  <script>
+    function openLink(url) {
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>
