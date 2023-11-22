@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buttons Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Button Example</h1>
+
+  <button onclick="redirectToYouTube()">YouTube</button>
+  <button onclick="showClassCode()">Class Code</button>
+
+  <p id="classCode" style="display: none;">Class Code: HPV4FJB</p>
+
+  <script>
+    function redirectToYouTube() {
+      alert("Redirecting to YouTube...");
+      // You can add code here to redirect to YouTube or perform other actions.
+    }
+
+    function showClassCode() {
+      const classCodeElement = document.getElementById('classCode');
+      classCodeElement.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>

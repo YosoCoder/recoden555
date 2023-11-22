@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #chat-box {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    #message-input {
+      width: 70%;
+      padding: 10px;
+      margin-right: 10px;
+    }
+
+    #send-button {
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Chat App</h1>
+
+  <div id="chat-box"></div>
+
+  <input type="text" id="message-input" placeholder="Type your message">
+  <button id="send-button" onclick="sendMessage()">Send</button>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js"></script>
+
+  <script>
+    // Replace with your Firebase config
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
+
+    function sendMessage() {
+      const messageInput = document.getElementById('message-input');
+      const message = messageInput.value;
+
+      if (message.trim() !== '') {
+        const user = auth.currentUser;
+
+        if (user) {
+          const messageData = {
+            user: user.displayName,
+            message: message,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+          };
+
+          database.ref('messages').push(messageData);
+          messageInput.value = '';
+        } else {
+          alert('You need to sign in first.');
+        }
+      }
+    }
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        // User is signed in.
+        displayChat();
+      } else {
+        // User is signed out.
+        alert('You are signed out. Sign in to chat.');
+      }
+    });
+
+    function displayChat() {
+      const chatBox = document.getElementById('chat-box');
+      const messagesRef = database.ref('messages');
+
+      messagesRef.on('child_added', snapshot => {
+        const message = snapshot.val();
+        const messageElement = document.createElement('p');
+        messageElement.textContent = `${message.user}: ${message.message}`;
+        chatBox.appendChild(messageElement);
+
+        // Scroll to the bottom to show the latest message
+        chatBox.scrollTop = chatBox.scrollHeight;
+      });
+    }
+  </script>
+
+</body>
+</html>

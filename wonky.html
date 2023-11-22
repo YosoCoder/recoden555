@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buttons Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+
+    #classCode {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Buttons Demo</h1>
+
+  <button onclick="showYouTube()">YouTube</button>
+  <button onclick="showAlexsMath()">Alex's Math</button>
+  <button onclick="showClassroom()">Classroom</button>
+
+  <p id="classCode" style="display: none;"></p>
+
+  <script>
+    function showYouTube() {
+      alert("Redirecting to YouTube...");
+      // You can add code to redirect to YouTube or perform other actions.
+    }
+
+    function showAlexsMath() {
+      alert("Redirecting to Alex's Math...");
+      // You can add code to redirect to Alex's Math or perform other actions.
+    }
+
+    function showClassroom() {
+      const classCodeElement = document.getElementById('classCode');
+      const classCode = prompt('Enter class code for Classroom:');
+      
+      if (classCode) {
+        classCodeElement.textContent = `Class Code: ${classCode}`;
+        classCodeElement.style.display = 'block';
+      } else {
+        classCodeElement.style.display = 'none';
+      }
+    }
+  </script>
+
+</body>
+</html>
