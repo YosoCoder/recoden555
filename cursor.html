@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Configurator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #customCursorButton {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #customCursor {
+      display: none;
+      position: fixed;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Mouse Configurator</h1>
+
+  <button id="customCursorButton" onclick="customizeMouse()">Customize Mouse</button>
+
+  <img id="customCursor" src="https://example.com/custom-cursor.png" alt="Custom Cursor">
+
+  <script>
+    function customizeMouse() {
+      const customCursorButton = document.getElementById('customCursorButton');
+      const customCursor = document.getElementById('customCursor');
+
+      customCursor.style.display = 'block';
+
+      customCursorButton.addEventListener('mousemove', (event) => {
+        const { clientX, clientY } = event;
+        customCursor.style.left = `${clientX}px`;
+        customCursor.style.top = `${clientY}px`;
+      });
+
+      document.addEventListener('click', () => {
+        customCursor.style.display = 'none';
+        customCursorButton.removeEventListener('mousemove', null);
+      });
+    }
+  </script>
+
+</body>
+</html>

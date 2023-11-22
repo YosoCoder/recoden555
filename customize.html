@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object Customizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .customizable-object {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      border: 2px solid #000;
+      display: inline-block;
+    }
+
+    #color-picker {
+      margin-top: 20px;
+    }
+
+    #export-button {
+      margin-top: 20px;
+      padding: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Object Customizer</h1>
+
+  <div id="object1" class="customizable-object"></div>
+  <div id="object2" class="customizable-object"></div>
+  <div id="object3" class="customizable-object"></div>
+  <div id="object4" class="customizable-object"></div>
+  <div id="object5" class="customizable-object"></div>
+
+  <input type="color" id="color-picker" onchange="changeColor()">
+  <button id="export-button" onclick="exportImage()">Export Image</button>
+
+  <script>
+    let selectedObject = null;
+
+    function changeColor() {
+      const colorPicker = document.getElementById('color-picker');
+      if (selectedObject) {
+        selectedObject.style.backgroundColor = colorPicker.value;
+      }
+    }
+
+    function exportImage() {
+      const objects = document.querySelectorAll('.customizable-object');
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      objects.forEach(object => {
+        const rect = object.getBoundingClientRect();
+        context.fillStyle = object.style.backgroundColor || 'transparent';
+        context.fillRect(rect.left, rect.top, rect.width, rect.height);
+      });
+
+      const dataURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = dataURL;
+      link.download = 'customized_image.png';
+      link.click();
+    }
+
+    document.querySelectorAll('.customizable-object').forEach(object => {
+      object.addEventListener('click', () => {
+        selectedObject = object;
+      });
+    });
+  </script>
+
+</body>
+</html>

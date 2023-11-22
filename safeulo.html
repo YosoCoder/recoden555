@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Roblox</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #downloadButton {
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Download Roblox</h1>
+
+  <p>Click the button below to download Roblox from Google Play:</p>
+
+  <button id="downloadButton" onclick="redirectToGooglePlay()">Download Roblox</button>
+
+  <script>
+    function redirectToGooglePlay() {
+      // Replace 'com.roblox.client' with the actual package name of the Roblox app on Google Play
+      window.open('https://play.google.com/store/apps/details?id=com.roblox.client', '_blank');
+    }
+  </script>
+
+</body>
+</html>
